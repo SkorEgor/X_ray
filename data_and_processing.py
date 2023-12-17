@@ -1,6 +1,6 @@
 import numpy as np
 import math
-
+import kaczmarz
 
 
 class DataAndProcessing:
@@ -124,25 +124,32 @@ class DataAndProcessing:
         # Матрица использованных индексов и их суммы
         return used_indexes, resulting_sum
 
-    # ПРОЦЕСС ВОСТАНОВЛЕНИЯ
-    # расчет через псевдообратную матрицу
+    # ПРОЦЕСС ВОСТАНОВЛЕНИЯ.
+    # Метод 1) Наименьших квадратов / Псевдообратной матрицы
     @staticmethod
-    def least_squares_method(a, b):
+    def method_least_squares(a, b, c=None):
         a_reverse = np.linalg.pinv(a)
         return np.matmul(a_reverse, b)
 
-    # Возвращает не повторяющие строки
+    # Метод 2) Качмарж с правилом циклического выбора
+    @staticmethod
+    def method_karchmarg_cyclical(a, b, max_iter=5000):
+        a_resulting = kaczmarz.Cyclic.solve(a, b, maxiter=max_iter)
+        return a_resulting
+
+    # Метод 3) Качмарж с правилом максимального расстояния
+    @staticmethod
+    def method_karchmarg_max_distance(a, b, max_iter=5000):
+        a_resulting = kaczmarz.MaxDistance.solve(a, b, maxiter=max_iter)
+        return a_resulting
+
+    # ***) Возвращает не повторяющие строки
     @staticmethod
     def no_repetitions(matrix_a, vector_b):
         matrix_for_calculation = [tuple(row) for row in matrix_a]
         matrix_a_without_repetitions, indexes_of_non_repeating_rows = np.unique(
             matrix_for_calculation, axis=0, return_index=True)
         return matrix_a_without_repetitions, vector_b[indexes_of_non_repeating_rows]
-
-    @staticmethod
-    def calculation_pixel_value(affected_pixels, beam_sum):
-        matrix_a, vector_b = DataAndProcessing.no_repetitions(affected_pixels, beam_sum)
-        return DataAndProcessing.least_squares_method(matrix_a, vector_b)
 
     # ОБЩАЯ ФУНКЦИЯ
     @staticmethod
@@ -193,24 +200,28 @@ class DataAndProcessing:
         return matrix_a, vector_b
 
     @staticmethod
-    def recovery_by_scans(matrix_a, vector_b, shape):
+    def recovery_by_scans(matrix_a, vector_b, shape,
+                          solution_method, max_iter=5000):
         # ПАРАМЕТРЫ ИЗОБРАЖЕНИЯ
         height, width = shape[0], shape[1]
         # matrix_a = matrix_a.astype(float)
 
         # rez = calculation_pixel_value(matrix_a.astype('float'),b.astype('float')).reshape(height, width).astype('int')
-        rez = DataAndProcessing.calculation_pixel_value(matrix_a, vector_b) \
-            .reshape(height, width).astype('int')
+        rez = solution_method(matrix_a, vector_b, max_iter)
+        # Приводим к размерам изображения и соответствующему типу данных
+        rez = rez.reshape(height, width).astype('int')
 
         return rez
 
     @staticmethod
-    def all_calculation(picture_gray, multiple_angle=15):
+    def all_calculation(picture_gray, solution_method, multiple_angle=15, max_iter=5000):
         # Матрица активных индексов и вектор суммы по ним
         matrix_a, vector_b = DataAndProcessing.full_scan(picture_gray, multiple_angle)
         # Удаление повторяющихся строк
         matrix_a, vector_b = DataAndProcessing.no_repetitions(matrix_a, vector_b)
         # Находим изображение с заданным размером, через псевдообратную матрицу
-        reconstructed_image = DataAndProcessing.recovery_by_scans(matrix_a, vector_b, picture_gray.shape)
+        print("g")
+        reconstructed_image = DataAndProcessing.recovery_by_scans(matrix_a, vector_b, picture_gray.shape,
+                                                                  solution_method, max_iter)
         # Возвращаем результат
         return reconstructed_image

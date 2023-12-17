@@ -88,6 +88,9 @@ class GuiProgram(Ui_Dialog):
 
         self.resulting_picture_gray = None
 
+        self.widget_max_number_iterations_max_distance.setEnabled(False)
+        self.widget_max_number_iterations_cyclical.setEnabled(False)
+
         # ДЕЙСТВИЯ ПРИ ВКЛЮЧЕНИИ
         # Смена режима отображения картинки
         self.radioButton_color_picture.clicked.connect(self.display_original_picture)
@@ -133,8 +136,20 @@ class GuiProgram(Ui_Dialog):
 
         step_angle = int(self.lineEdit_scan_step.text())
 
+        solution_method = DataAndProcessing.method_least_squares
+        max_iter = 0
+        if self.radioButton_method_karchmargin_cyclical.isChecked():
+            solution_method = DataAndProcessing.method_karchmarg_cyclical
+            max_iter = int(self.lineEdit_max_number_iterations_cyclical.text())
+        elif self.radioButton_method_karchmargin_max_distance.isChecked():
+            solution_method = DataAndProcessing.method_karchmarg_max_distance
+            max_iter = int(self.lineEdit_max_number_iterations_max_distance.text())
+
         self.resulting_picture_gray = \
-            DataAndProcessing.all_calculation(self.original_picture_gray, step_angle)
+            DataAndProcessing.all_calculation(picture_gray=self.original_picture_gray,
+                                              multiple_angle=step_angle,
+                                              solution_method=solution_method,
+                                              max_iter=max_iter)
 
         drawer.image_gray(self.graph_resulting_picture, self.resulting_picture_gray)
 

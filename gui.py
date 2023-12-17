@@ -213,8 +213,8 @@ class Ui_Dialog(object):
         self.layout_design.setSpacing(3)
         self.layout_design.setObjectName("layout_design")
         self.widget_menu = QtWidgets.QWidget(self.widget_design)
-        self.widget_menu.setMinimumSize(QtCore.QSize(200, 0))
-        self.widget_menu.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.widget_menu.setMinimumSize(QtCore.QSize(220, 0))
+        self.widget_menu.setMaximumSize(QtCore.QSize(220, 16777215))
         self.widget_menu.setObjectName("widget_menu")
         self.layout_menu = QtWidgets.QVBoxLayout(self.widget_menu)
         self.layout_menu.setContentsMargins(0, 0, 0, 6)
@@ -224,7 +224,7 @@ class Ui_Dialog(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 200, 443))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 212, 542))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setContentsMargins(0, -1, 3, 0)
@@ -305,47 +305,59 @@ class Ui_Dialog(object):
         self.layout_options = QtWidgets.QVBoxLayout(self.widget_options)
         self.layout_options.setContentsMargins(0, 0, 0, 20)
         self.layout_options.setObjectName("layout_options")
-        self.groupBox_stretch = QtWidgets.QGroupBox(self.widget_options)
+        self.groupBox_solution_method = QtWidgets.QGroupBox(self.widget_options)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.groupBox_stretch.sizePolicy().hasHeightForWidth())
-        self.groupBox_stretch.setSizePolicy(sizePolicy)
-        self.groupBox_stretch.setObjectName("groupBox_stretch")
-        self.layout_stretch = QtWidgets.QVBoxLayout(self.groupBox_stretch)
-        self.layout_stretch.setContentsMargins(9, 5, 9, 9)
-        self.layout_stretch.setSpacing(6)
-        self.layout_stretch.setObjectName("layout_stretch")
-        self.pushButton_stretch = QtWidgets.QPushButton(self.groupBox_stretch)
-        self.pushButton_stretch.setStyleSheet("\n"
-"QPushButton {\n"
-"    font-size: 10pt;\n"
-"    background-color:rgb(37, 41, 48);/* задает цвет фона */\n"
-"    display: inline-block;                            /* пределяет, будет ли элемент обрабатываться как блочный или встроенный элемент */\n"
-"    border: 1px solid rgb(52, 59, 72);        /* задает границу элемента */\n"
-"\n"
-"    /* задает иконку */\n"
-"    background-position: left center;                            /* выравнивание иконки */\n"
-"    background-repeat: no-repeat;                                /* повторять иконку */\n"
-"} \n"
-"\n"
-"/* срабатывает, когда пользователь наводит на элемент мышью */\n"
-"QPushButton:hover {\n"
-"    background-color:rgb(40, 44, 52);            /* задаем цвет фона */\n"
-"    border: none;                                                /* без границ */\n"
-"}\n"
-"\n"
-"\n"
-"/* срабатывает, при нажатии*/\n"
-"QPushButton:pressed      {\n"
-"    background-color:rgb(170, 170, 170);        /* задаем цвет фона */\n"
-"    color: rgb(181, 181, 181);\n"
-"    border: none;                                                /* без границ */\n"
-"}\n"
-"/*")
-        self.pushButton_stretch.setObjectName("pushButton_stretch")
-        self.layout_stretch.addWidget(self.pushButton_stretch)
-        self.layout_options.addWidget(self.groupBox_stretch)
+        sizePolicy.setHeightForWidth(self.groupBox_solution_method.sizePolicy().hasHeightForWidth())
+        self.groupBox_solution_method.setSizePolicy(sizePolicy)
+        self.groupBox_solution_method.setObjectName("groupBox_solution_method")
+        self.layout_solution_method = QtWidgets.QVBoxLayout(self.groupBox_solution_method)
+        self.layout_solution_method.setContentsMargins(9, 5, 9, 9)
+        self.layout_solution_method.setSpacing(6)
+        self.layout_solution_method.setObjectName("layout_solution_method")
+        self.radioButton_pseudoinverse_matrix_method = QtWidgets.QRadioButton(self.groupBox_solution_method)
+        self.radioButton_pseudoinverse_matrix_method.setCheckable(True)
+        self.radioButton_pseudoinverse_matrix_method.setChecked(True)
+        self.radioButton_pseudoinverse_matrix_method.setObjectName("radioButton_pseudoinverse_matrix_method")
+        self.layout_solution_method.addWidget(self.radioButton_pseudoinverse_matrix_method)
+        self.radioButton_method_karchmargin_cyclical = QtWidgets.QRadioButton(self.groupBox_solution_method)
+        self.radioButton_method_karchmargin_cyclical.setShortcut("")
+        self.radioButton_method_karchmargin_cyclical.setChecked(False)
+        self.radioButton_method_karchmargin_cyclical.setAutoRepeat(False)
+        self.radioButton_method_karchmargin_cyclical.setAutoExclusive(True)
+        self.radioButton_method_karchmargin_cyclical.setObjectName("radioButton_method_karchmargin_cyclical")
+        self.layout_solution_method.addWidget(self.radioButton_method_karchmargin_cyclical)
+        self.widget_max_number_iterations_cyclical = QtWidgets.QWidget(self.groupBox_solution_method)
+        self.widget_max_number_iterations_cyclical.setObjectName("widget_max_number_iterations_cyclical")
+        self.layout_max_number_iterations_cyclical = QtWidgets.QHBoxLayout(self.widget_max_number_iterations_cyclical)
+        self.layout_max_number_iterations_cyclical.setContentsMargins(0, 0, 0, 0)
+        self.layout_max_number_iterations_cyclical.setObjectName("layout_max_number_iterations_cyclical")
+        self.label_text_max_number_iterations_cyclical = QtWidgets.QLabel(self.widget_max_number_iterations_cyclical)
+        self.label_text_max_number_iterations_cyclical.setObjectName("label_text_max_number_iterations_cyclical")
+        self.layout_max_number_iterations_cyclical.addWidget(self.label_text_max_number_iterations_cyclical)
+        self.lineEdit_max_number_iterations_cyclical = QtWidgets.QLineEdit(self.widget_max_number_iterations_cyclical)
+        self.lineEdit_max_number_iterations_cyclical.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_max_number_iterations_cyclical.setObjectName("lineEdit_max_number_iterations_cyclical")
+        self.layout_max_number_iterations_cyclical.addWidget(self.lineEdit_max_number_iterations_cyclical)
+        self.layout_solution_method.addWidget(self.widget_max_number_iterations_cyclical)
+        self.radioButton_method_karchmargin_max_distance = QtWidgets.QRadioButton(self.groupBox_solution_method)
+        self.radioButton_method_karchmargin_max_distance.setObjectName("radioButton_method_karchmargin_max_distance")
+        self.layout_solution_method.addWidget(self.radioButton_method_karchmargin_max_distance)
+        self.widget_max_number_iterations_max_distance = QtWidgets.QWidget(self.groupBox_solution_method)
+        self.widget_max_number_iterations_max_distance.setObjectName("widget_max_number_iterations_max_distance")
+        self.layout_max_number_iterations_max_distance = QtWidgets.QHBoxLayout(self.widget_max_number_iterations_max_distance)
+        self.layout_max_number_iterations_max_distance.setContentsMargins(0, 0, 0, 0)
+        self.layout_max_number_iterations_max_distance.setObjectName("layout_max_number_iterations_max_distance")
+        self.label_text_max_number_iterations_max_distance = QtWidgets.QLabel(self.widget_max_number_iterations_max_distance)
+        self.label_text_max_number_iterations_max_distance.setObjectName("label_text_max_number_iterations_max_distance")
+        self.layout_max_number_iterations_max_distance.addWidget(self.label_text_max_number_iterations_max_distance)
+        self.lineEdit_max_number_iterations_max_distance = QtWidgets.QLineEdit(self.widget_max_number_iterations_max_distance)
+        self.lineEdit_max_number_iterations_max_distance.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_max_number_iterations_max_distance.setObjectName("lineEdit_max_number_iterations_max_distance")
+        self.layout_max_number_iterations_max_distance.addWidget(self.lineEdit_max_number_iterations_max_distance)
+        self.layout_solution_method.addWidget(self.widget_max_number_iterations_max_distance)
+        self.layout_options.addWidget(self.groupBox_solution_method)
         self.widget_normalization = QtWidgets.QWidget(self.widget_options)
         self.widget_normalization.setMinimumSize(QtCore.QSize(0, 0))
         self.widget_normalization.setObjectName("widget_normalization")
@@ -437,6 +449,8 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         self.pushButton_methods.clicked['bool'].connect(self.widget_options.setVisible) # type: ignore
         self.pushButton_loading_data.clicked['bool'].connect(self.widget_loading_data.setVisible) # type: ignore
+        self.radioButton_method_karchmargin_cyclical.toggled['bool'].connect(self.widget_max_number_iterations_cyclical.setEnabled) # type: ignore
+        self.radioButton_method_karchmargin_max_distance.toggled['bool'].connect(self.widget_max_number_iterations_max_distance.setEnabled) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -448,8 +462,16 @@ class Ui_Dialog(object):
         self.radioButton_color_picture.setText(_translate("Dialog", "Цветная"))
         self.radioButton_gray_picture.setText(_translate("Dialog", "Серая"))
         self.pushButton_methods.setText(_translate("Dialog", "Методы"))
-        self.groupBox_stretch.setTitle(_translate("Dialog", "Растяжка гистограммы"))
-        self.pushButton_stretch.setText(_translate("Dialog", "Обработка"))
+        self.groupBox_solution_method.setTitle(_translate("Dialog", "Метод решения"))
+        self.radioButton_pseudoinverse_matrix_method.setText(_translate("Dialog", "Псевдобратная матрица"))
+        self.radioButton_method_karchmargin_cyclical.setText(_translate("Dialog", "Качмарж с правилом\n"
+"циклического выбора"))
+        self.label_text_max_number_iterations_cyclical.setText(_translate("Dialog", "Макс. итер."))
+        self.lineEdit_max_number_iterations_cyclical.setText(_translate("Dialog", "1000"))
+        self.radioButton_method_karchmargin_max_distance.setText(_translate("Dialog", "Качмарж с правилом\n"
+"максимального расстояния"))
+        self.label_text_max_number_iterations_max_distance.setText(_translate("Dialog", "Макс. итер."))
+        self.lineEdit_max_number_iterations_max_distance.setText(_translate("Dialog", "1000"))
         self.groupBox_scan_step.setTitle(_translate("Dialog", "Шаг сканирования"))
         self.label_text_scan_step.setText(_translate("Dialog", "Угол [град.]"))
         self.lineEdit_scan_step.setText(_translate("Dialog", "15"))

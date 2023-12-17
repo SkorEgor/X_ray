@@ -240,13 +240,13 @@ border: none;
        <widget class="QWidget" name="widget_menu" native="true">
         <property name="minimumSize">
          <size>
-          <width>200</width>
+          <width>220</width>
           <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>220</width>
           <height>16777215</height>
          </size>
         </property>
@@ -276,8 +276,8 @@ border: none;
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>200</width>
-              <height>443</height>
+              <width>212</width>
+              <height>542</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -514,7 +514,7 @@ QPushButton:hover {
                  <number>20</number>
                 </property>
                 <item>
-                 <widget class="QGroupBox" name="groupBox_stretch">
+                 <widget class="QGroupBox" name="groupBox_solution_method">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                     <horstretch>0</horstretch>
@@ -522,9 +522,9 @@ QPushButton:hover {
                    </sizepolicy>
                   </property>
                   <property name="title">
-                   <string>Растяжка гистограммы</string>
+                   <string>Метод решения</string>
                   </property>
-                  <layout class="QVBoxLayout" name="layout_stretch" stretch="0">
+                  <layout class="QVBoxLayout" name="layout_solution_method" stretch="0,0,0,0,0">
                    <property name="spacing">
                     <number>6</number>
                    </property>
@@ -541,38 +541,114 @@ QPushButton:hover {
                     <number>9</number>
                    </property>
                    <item>
-                    <widget class="QPushButton" name="pushButton_stretch">
-                     <property name="styleSheet">
-                      <string notr="true">
-QPushButton {
-	font-size: 10pt;
-	background-color:rgb(37, 41, 48);/* задает цвет фона */
-	display: inline-block;							/* пределяет, будет ли элемент обрабатываться как блочный или встроенный элемент */
-	border: 1px solid rgb(52, 59, 72);		/* задает границу элемента */
-
-	/* задает иконку */
-	background-position: left center;							/* выравнивание иконки */
-	background-repeat: no-repeat;								/* повторять иконку */
-} 
-
-/* срабатывает, когда пользователь наводит на элемент мышью */
-QPushButton:hover {
-	background-color:rgb(40, 44, 52);			/* задаем цвет фона */
-	border: none;												/* без границ */
-}
-
-
-/* срабатывает, при нажатии*/
-QPushButton:pressed      {
-	background-color:rgb(170, 170, 170);		/* задаем цвет фона */
-	color: rgb(181, 181, 181);
-	border: none;												/* без границ */
-}
-/*</string>
-                     </property>
+                    <widget class="QRadioButton" name="radioButton_pseudoinverse_matrix_method">
                      <property name="text">
-                      <string>Обработка</string>
+                      <string>Псевдобратная матрица</string>
                      </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_method_karchmargin_cyclical">
+                     <property name="text">
+                      <string>Качмарж с правилом
+циклического выбора</string>
+                     </property>
+                     <property name="shortcut">
+                      <string/>
+                     </property>
+                     <property name="checked">
+                      <bool>false</bool>
+                     </property>
+                     <property name="autoRepeat">
+                      <bool>false</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QWidget" name="widget_max_number_iterations_cyclical" native="true">
+                     <layout class="QHBoxLayout" name="layout_max_number_iterations_cyclical">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="label_text_max_number_iterations_cyclical">
+                        <property name="text">
+                         <string>Макс. итер.</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_max_number_iterations_cyclical">
+                        <property name="text">
+                         <string>1000</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_method_karchmargin_max_distance">
+                     <property name="text">
+                      <string>Качмарж с правилом
+максимального расстояния</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QWidget" name="widget_max_number_iterations_max_distance" native="true">
+                     <layout class="QHBoxLayout" name="layout_max_number_iterations_max_distance">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="label_text_max_number_iterations_max_distance">
+                        <property name="text">
+                         <string>Макс. итер.</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_max_number_iterations_max_distance">
+                        <property name="text">
+                         <string>1000</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                   </layout>
@@ -843,6 +919,38 @@ color: rgb(0, 0, 0);
     <hint type="destinationlabel">
      <x>94</x>
      <y>136</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_method_karchmargin_cyclical</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>widget_max_number_iterations_cyclical</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>91</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>81</x>
+     <y>270</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_method_karchmargin_max_distance</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>widget_max_number_iterations_max_distance</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>308</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>104</x>
+     <y>339</y>
     </hint>
    </hints>
   </connection>
